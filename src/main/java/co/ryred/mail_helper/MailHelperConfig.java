@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,6 +29,11 @@ public class MailHelperConfig {
 
     @Getter
     private static Gson gson = getDefaultGsonBuilder().create();
+
+    /**
+     * The icon for notifications.
+     */
+    private transient TrayIcon icon = null;
 
     /**
      * Allows loading the configuration from a remote/static/shared location.
@@ -54,6 +60,9 @@ public class MailHelperConfig {
      */
     private String[] emailSuffixes = new String[]{ "cory.red", "ryred.co" };
 
+    /**
+     * Enigma rotor, reflector and plug board settings.
+     */
     private String enigmaSettings = "* B I IV I AXLE";
 
     /**

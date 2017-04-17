@@ -4,6 +4,7 @@ import co.ryred.mail_helper.MailHelperConfig;
 import co.ryred.mail_helper.enigma.Enigma;
 
 import javax.mail.*;
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -81,6 +82,9 @@ public class MailOrganiser extends Thread {
             inbox.copyMessages(new Message[]{msg}, dankMemesFolder);
 
             msg.setFlag(Flags.Flag.DELETED, true);
+
+            if ( config.getIcon() != null )
+                    config.getIcon().displayMessage("Mail Helper", "[" + toMatch + "]\nMail Received, subject + \"" + msg.getSubject() + "\".", TrayIcon.MessageType.INFO);
 
         }
 

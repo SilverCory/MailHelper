@@ -36,6 +36,8 @@ public class MailTrayIcon {
         final TrayIcon trayIcon = new TrayIcon(createImage("/Bread_Pleasured.png", "Mail helper."));
         final SystemTray tray = SystemTray.getSystemTray();
 
+        config.setIcon(trayIcon);
+
         // Image stuffs.
         trayIcon.setImageAutoSize(true);
         trayIcon.setToolTip("Mail helper");
