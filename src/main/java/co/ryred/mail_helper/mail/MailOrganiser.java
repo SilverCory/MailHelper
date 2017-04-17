@@ -84,7 +84,7 @@ public class MailOrganiser extends Thread {
             msg.setFlag(Flags.Flag.DELETED, true);
 
             if ( config.getIcon() != null )
-                    config.getIcon().displayMessage("Mail Helper", "[" + toMatch + "]\nMail Received, subject + \"" + msg.getSubject() + "\".", TrayIcon.MessageType.INFO);
+                    config.getIcon().displayMessage("Mail Helper", "[" + toMatch + "]\nMail Received\nSubject: \"" + msg.getSubject() + "\".", TrayIcon.MessageType.INFO);
 
         }
 
