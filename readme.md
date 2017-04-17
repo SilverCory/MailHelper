@@ -1,7 +1,6 @@
 MailHelper
 ==========
-Mail organisation and address creation.
----------------------------------------
+**Mail organisation and address creation.**
 
 ## Information
 This uses WW2 Enigma to create email addresses relevant to the service you're creating. The enigma code was provided by [CollinJ/Enigma](https://github.com/CollinJ/Enigma), and edited to work with this project.
