@@ -91,6 +91,8 @@ public class MailTrayPopup extends JFrame {
             outputField.setText(crypt + suffix);
             outputField.setEnabled(true);
 
+            // FIXME this is where to insert a hook!
+
         });
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
