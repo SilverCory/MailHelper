@@ -79,7 +79,13 @@ public class MailTrayPopup extends JFrame {
         JButton cryptButton = new JButton("Crypt");
         cryptButton.addActionListener(e -> {
 
-            String crypt = Enigma.crypt( config.getEnigmaSettings(), inputField.getText().trim() ).toLowerCase().trim();
+            String input = inputField.getText();
+            if( input == null || (input = input.trim()).isEmpty() ) {
+                vibrate();
+                return;
+            }
+
+            String crypt = Enigma.crypt( config.getEnigmaSettings(), input ).toLowerCase().trim();
             String suffix = emailSuffix.getSelectedItem().toString().trim();
             if(!suffix.isEmpty()) suffix = "_e@" + suffix;
             outputField.setText(crypt + suffix);
@@ -100,7 +106,7 @@ public class MailTrayPopup extends JFrame {
                 StringSelection stringSelection = new StringSelection(outputField.getText().trim());
                 Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clpbrd.setContents(stringSelection, null);
-            }
+            } else vibrate();
         });
         c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
@@ -122,6 +128,26 @@ public class MailTrayPopup extends JFrame {
         pack();
         setVisible(true);
 
+    }
+
+    public void vibrate() {
+        try {
+            final int originalX = getLocationOnScreen().x;
+            final int originalY = getLocationOnScreen().y;
+            for(int i = 0; i < 3; i++) {
+                Thread.sleep(10);
+                setLocation(originalX, originalY + 5);
+                Thread.sleep(10);
+                setLocation(originalX, originalY - 5);
+                Thread.sleep(10);
+                setLocation(originalX + 5, originalY);
+                Thread.sleep(10);
+                setLocation(originalX, originalY);
+            }
+        }
+        catch (Exception err) {
+            err.printStackTrace();
+        }
     }
 
 }
