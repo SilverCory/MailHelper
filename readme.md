@@ -3,6 +3,10 @@ MailHelper
 **Mail organisation and address creation.**
 
 ## Information
+### What this does..
+Generate, create and use email addresses obfuscated via enigma (see [#Enigma](#Enigma)), and organises/de-obfuscates them on the inbox in the background.
+
+### Enigma
 This uses WW2 Enigma to create email addresses relevant to the service you're creating. The enigma code was provided by [CollinJ/Enigma](https://github.com/CollinJ/Enigma), and edited to work with this project.
 
 If you're using this, ensure to change the ``enigmaSettings`` in ``config.json``, as this is the encryption key.
@@ -21,3 +25,12 @@ This was made for a wildcard setup, but now my private version creates individua
 
 ## Compile
 ``mvn clean package`` it's as simple as that really..
+
+## Why?
+It's nice to use an email address per service, that way you can identify where spam is coming from and eliminate it.
+
+However to outright use ``facebook@example.com`` or ``github@example.com`` it makes it easy to guess the email address for that specific service, not particularly desirable. 
+
+A solution? Obfuscate the email address! However now they're obfuscated it's going to be a mess in your inbox, so this can organise them nicely as shown..
+
+![Inbox Example](http://i.imgur.com/AnnEVtx.png)
