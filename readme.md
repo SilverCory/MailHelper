@@ -10,8 +10,10 @@ This uses WW2 Enigma to create email addresses relevant to the service you're cr
 
 If you're using this, ensure to change the ``enigmaSettings`` in ``config.json``, as this is the encryption key.
 
-###**Just a point to note!**
-Enigma is not a secure encryption, if you don't know this it's really wort a read. Mr. Alan Turing, and his team at Bletchley Park (UK), cracked Enigma which contributed massivley to the German's loosing the war. 
+### **Just a point to note!**
+Enigma is not a secure encryption, if you don't know this it's really worth a read!
+ 
+Sir Alan Turing, and his team at Bletchley Park (UK), cracked Enigma which contributed massively to the German's losing the war. 
 
 From reading up on it several times, the fault in this encryption seems to be that a letter can never be itself. The Bombe Machine made to crack enigma exploited this and was able to crack enigma in a few minutes.
 
