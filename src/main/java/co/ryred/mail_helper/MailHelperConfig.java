@@ -66,6 +66,11 @@ public class MailHelperConfig {
     private String enigmaSettings = "* B I IV I AXLE";
 
     /**
+     * GPG Config.
+     */
+    private String pgpEmailLoc = "encrypted";
+
+    /**
      * Creates a default configuration.
      *
      * @return The default configuration.
@@ -223,4 +228,5 @@ public class MailHelperConfig {
         }
 
     }
+
 }

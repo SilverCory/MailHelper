@@ -40,9 +40,9 @@ public class MailUtils {
         HashSet<Message> matchedMessages = new HashSet<>();
 
         for( String address : matchAddresses ) {
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.TO, address))));
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.BCC, address))));
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.CC, address))));
+            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.TO, "_e@" + address))));
+            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.BCC, "_e@" + address))));
+            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.CC, "_e@" + address))));
         }
 
         return matchedMessages.toArray( new Message[matchedMessages.size()] );
