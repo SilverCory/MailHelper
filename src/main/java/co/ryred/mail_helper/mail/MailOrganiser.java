@@ -6,9 +6,11 @@ import co.ryred.mail_helper.enigma.Enigma;
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,6 +41,7 @@ public class MailOrganiser extends Thread {
 
         while (true) {
             try {
+                System.out.println( "30 Second delay!" );
                 Thread.sleep(TimeUnit.SECONDS.toMillis(30));
                 procMail();
             } catch (InterruptedException e) {
@@ -89,7 +92,6 @@ public class MailOrganiser extends Thread {
                 try {
                     doXssShit( msg, toMatch );
                     // msg.setFlag(Flags.Flag.DELETED, true);
-                    continue;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,7 +115,10 @@ public class MailOrganiser extends Thread {
         File file = new File( config.getPgpEmailLoc(), toMatch );
         if(!file.exists()) file.mkdirs();
 
-        FileOutputStream fos = new FileOutputStream(new File(file, formatter.format(new Date()) + ".eml"));
+        File outputFile = new File(file, formatter.format(message.getReceivedDate()) + "_" + message.getMessageNumber() + ".eml");
+        if( outputFile.exists() ) return;
+
+        FileOutputStream fos = new FileOutputStream(outputFile);
         OutputStreamWriter os = new OutputStreamWriter(fos);
 
         Object content = message.getContent();
