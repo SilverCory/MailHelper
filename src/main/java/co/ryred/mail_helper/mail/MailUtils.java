@@ -18,9 +18,14 @@ import java.util.Set;
 public class MailUtils {
 
     public static String getToMatch( Address[] addresses, String... matches ) {
+        return getToMatch(addresses, true, matches);
+    }
+
+    public static String getToMatch( Address[] addresses, boolean underscoreE, String... matches ) {
 
         Set<AddressFilter> filters = new HashSet<>();
-        for( String match : matches ) filters.add(new AddressFilter("_e@" + match));
+        String underscoreEStr = underscoreE ? "_e@" : "@";
+        for( String match : matches ) filters.add(new AddressFilter(underscoreEStr + match));
 
         for( Address address : addresses ) {
             if(!(address instanceof InternetAddress)) continue;
@@ -35,14 +40,15 @@ public class MailUtils {
 
     }
 
-    public static Message[] getFilteredMessages(Folder search, String... matchAddresses ) throws MessagingException {
+    public static Message[] getFilteredMessages(Folder searchFolder, String... matchAddresses ) throws MessagingException {
 
         HashSet<Message> matchedMessages = new HashSet<>();
 
         for( String address : matchAddresses ) {
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.TO, "_e@" + address))));
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.BCC, "_e@" + address))));
-            matchedMessages.addAll(Arrays.asList(search.search(new RecipientStringTerm(Message.RecipientType.CC, "_e@" + address))));
+            System.out.println( "Finding address for: " + address );
+            matchedMessages.addAll(Arrays.asList(searchFolder.search(new RecipientStringTerm(Message.RecipientType.TO, "_e@" + address))));
+            matchedMessages.addAll(Arrays.asList(searchFolder.search(new RecipientStringTerm(Message.RecipientType.BCC, "_e@" + address))));
+            matchedMessages.addAll(Arrays.asList(searchFolder.search(new RecipientStringTerm(Message.RecipientType.CC, "_e@" + address))));
         }
 
         return matchedMessages.toArray( new Message[matchedMessages.size()] );

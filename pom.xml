@@ -135,7 +135,7 @@
                             <goal>launch4j</goal>
                         </goals>
                         <configuration>
-                            <headerType>console</headerType>
+                            <headerType>gui</headerType>
                             <jar>${pom.basedir}/target/MailHelper.jar</jar>
                             <outfile>${pom.basedir}/target/MailHelper.exe</outfile>
                             <downloadUrl>http://java.com/download</downloadUrl>

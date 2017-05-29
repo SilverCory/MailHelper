@@ -74,6 +74,10 @@ public class MailOrganiser extends Thread {
     private void procMail() throws MessagingException {
 
         Store store = getMail();
+        if( store == null ) {
+            System.out.println( "No mailstore! :(" );
+            return;
+        }
 
         Folder inbox = store.getDefaultFolder().getFolder("INBOX");
         inbox.open(Folder.READ_WRITE);
@@ -106,6 +110,7 @@ public class MailOrganiser extends Thread {
 
         }
 
+        System.out.println( "6" );
         inbox.expunge();
 
     }
