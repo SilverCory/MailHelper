@@ -65,6 +65,7 @@ public class MailUtils {
         try {
             newFolder = parent.getFolder(folderName);
             newFolder.create(Folder.HOLDS_MESSAGES);
+            newFolder.setSubscribed(true);
         } catch (Exception e) {
             System.out.println("Error creating folder: " + e.getMessage());
             e.printStackTrace();
